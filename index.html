@@ -51,6 +51,41 @@
       margin: 0 auto;
     }
 
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-btn.active {
+      color: #fff;
+      background: rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
     header {
       text-align: center;
       margin-bottom: 28px;
@@ -259,6 +294,12 @@
 <body>
 
   <div class="container">
+    <!-- Top Nav -->
+    <nav class="top-nav">
+      <a class="nav-btn active" href="index.html">📅 Match Calendar</a>
+      <a class="nav-btn" href="stats.html">📊 Stats & Points</a>
+    </nav>
+
     <header>
       <div class="badge">FVBCV 2026–2027 ⚡</div>
       <h1>CV FURIA</h1>
