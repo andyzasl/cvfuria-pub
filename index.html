@@ -22,7 +22,7 @@
       --primary-hover: #2563eb;
       --apple: #000000;
       --apple-border: rgba(255, 255, 255, 0.2);
-      --google: #ffffff;
+      --google: #f2f5f9;
       --google-text: #1f2937;
       --success: #10b981;
     }
@@ -97,6 +97,14 @@
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
     }
 
+    .team-card.senior-masculino {
+      background: linear-gradient(135deg, #F94343 0%, #0F1217 100%);
+    }
+
+    .team-card.senior-femenino {
+      background: linear-gradient(135deg, #6430E8 0%, #0F1217 100%);
+    }
+
     .team-header {
       display: flex;
       align-items: center;
@@ -164,13 +172,13 @@
     }
 
     .btn-google {
-      background: #ffffff;
+      background: #f2f5f9;
       color: var(--google-text);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     }
 
     .btn-google:hover {
-      background: #f3f4f6;
+      background: #e2e8f0;
     }
 
     .btn-copy {
@@ -258,7 +266,7 @@
     </header>
 
     <!-- Men's Team -->
-    <div class="team-card">
+    <div class="team-card senior-masculino">
       <div class="team-header">
         <div class="team-icon">🦁</div>
         <div class="team-info">
@@ -288,7 +296,7 @@
     </div>
 
     <!-- Women's Team -->
-    <div class="team-card">
+    <div class="team-card senior-femenino">
       <div class="team-header">
         <div class="team-icon">🐯</div>
         <div class="team-info">
