@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-27T15:23:09.295415+00:00",
+  "generated_at": "2026-10-30T15:55:37.262290+00:00",
   "teams": [
     {
       "team_name": "CV FURIA",
@@ -515,11 +515,11 @@
         },
         {
           "jornada": 8,
-          "date": "2026-11-22",
+          "date": "2026-11-21",
           "time": "11:00",
           "is_home": true,
           "opponent": "VAO ONTINYENT BLANC",
-          "venue": "Meta Club Deportivo (massanassa)",
+          "venue": "Pab. Parque Central (valencia)",
           "score": "",
           "set_scores": ""
         }
@@ -785,7 +785,7 @@
           "time": "16:00",
           "is_home": true,
           "opponent": "VOLEY QUART",
-          "venue": "Meta Club Deportivo (massanassa)",
+          "venue": "Pab. Parque Central (valencia)",
           "score": "",
           "set_scores": ""
         },
@@ -801,11 +801,11 @@
         },
         {
           "jornada": 6,
-          "date": "2026-11-15",
-          "time": "11:00",
+          "date": "2026-11-14",
+          "time": "12:00",
           "is_home": true,
           "opponent": "CV ALTAMIRA CALÍOPE",
-          "venue": "Meta Club Deportivo (massanassa)",
+          "venue": "Pab. Parque Central (valencia)",
           "score": "",
           "set_scores": ""
         },
