@@ -599,12 +599,70 @@
       transition: width 0.3s ease;
     }
 
+    /* Table Controls & Header Bar */
+    .table-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .table-subbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-subtle);
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .table-hint {
+      color: #93c5fd;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .view-toggle {
+      display: inline-flex;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .view-btn {
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border: none;
+      border-radius: 7px;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      min-height: 28px;
+    }
+
+    .view-btn.active {
+      background: rgba(59, 130, 246, 0.25);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+    }
+
     /* Table Styles */
     .table-wrap {
       overflow-x: auto;
-      margin-top: 12px;
-      border-radius: 12px;
+      border-radius: 14px;
       border: 1px solid var(--card-border);
+      -webkit-overflow-scrolling: touch;
+      background: rgba(15, 23, 42, 0.4);
     }
 
     table {
@@ -615,16 +673,17 @@
     }
 
     th {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.96);
       color: var(--text-subtle);
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 12px 10px;
+      padding: 11px 8px;
       letter-spacing: 0.5px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
+      border-bottom: 1px solid var(--card-border);
     }
 
     th:hover {
@@ -636,41 +695,116 @@
     }
 
     td {
-      padding: 10px 10px;
+      padding: 10px 8px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       white-space: nowrap;
+    }
+
+    tr.team-row {
+      cursor: pointer;
+      transition: background 0.15s ease;
     }
 
     tr:nth-child(even) td {
       background: var(--table-stripe);
     }
 
-    tr:hover td {
+    tr.team-row:hover td {
       background: var(--table-hover);
     }
 
+    tr.team-row:active td {
+      background: rgba(59, 130, 246, 0.14) !important;
+    }
+
     tr.is-furia-row.masc td {
-      background: rgba(249, 67, 67, 0.16) !important;
+      background: rgba(249, 67, 67, 0.14) !important;
       font-weight: 600;
-      border-top: 1px solid rgba(249, 67, 67, 0.5);
-      border-bottom: 1px solid rgba(249, 67, 67, 0.5);
+      border-top: 1px solid rgba(249, 67, 67, 0.4);
+      border-bottom: 1px solid rgba(249, 67, 67, 0.4);
     }
 
     tr.is-furia-row.fem td {
-      background: rgba(100, 48, 232, 0.16) !important;
+      background: rgba(100, 48, 232, 0.14) !important;
       font-weight: 600;
-      border-top: 1px solid rgba(100, 48, 232, 0.5);
-      border-bottom: 1px solid rgba(100, 48, 232, 0.5);
+      border-top: 1px solid rgba(100, 48, 232, 0.4);
+      border-bottom: 1px solid rgba(100, 48, 232, 0.4);
+    }
+
+    /* Sticky columns in Full View */
+    .table-wrap.full-view th.col-sticky-pos,
+    .table-wrap.full-view td.col-sticky-pos {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background: #0f172a;
+    }
+
+    .table-wrap.full-view th.col-sticky-team,
+    .table-wrap.full-view td.col-sticky-team {
+      position: sticky;
+      left: 36px;
+      z-index: 2;
+      background: #0f172a;
+      box-shadow: 3px 0 8px rgba(0, 0, 0, 0.35);
+    }
+
+    tr.is-furia-row.masc td.col-sticky-pos,
+    tr.is-furia-row.masc td.col-sticky-team {
+      background: #23121b !important;
+    }
+
+    tr.is-furia-row.fem td.col-sticky-pos,
+    tr.is-furia-row.fem td.col-sticky-team {
+      background: #1b122e !important;
+    }
+
+    .team-cell-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .team-name-text {
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 140px;
+    }
+
+    .you-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .team-expand-icon {
+      font-size: 10px;
+      color: var(--text-subtle);
+      transition: transform 0.2s ease;
+      margin-left: 2px;
+      flex-shrink: 0;
+    }
+
+    tr.team-row.expanded .team-expand-icon {
+      transform: rotate(180deg);
+      color: #60a5fa;
     }
 
     .pts-badge {
       font-weight: 800;
       font-size: 14px;
       color: #fbbf24;
+      display: inline-block;
+      min-width: 20px;
     }
 
     .trend-arrow {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
     }
 
@@ -684,6 +818,64 @@
 
     .trend-same {
       color: var(--text-subtle);
+    }
+
+    /* Expandable Team Detail Card */
+    tr.detail-row td {
+      padding: 0 !important;
+      background: rgba(15, 23, 42, 0.8) !important;
+      border-bottom: 1px solid var(--card-border);
+      white-space: normal !important;
+    }
+
+    .team-detail-card {
+      padding: 12px 14px;
+      border-left: 3px solid #3b82f6;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .team-detail-card.masc {
+      border-left-color: #F94343;
+    }
+
+    .team-detail-card.fem {
+      border-left-color: #6430E8;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .detail-box {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .detail-box-label {
+      color: var(--text-subtle);
+      font-size: 10px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 2px;
+      letter-spacing: 0.3px;
+    }
+
+    .detail-box-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .detail-box-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.3;
     }
 
     /* Matches List */
@@ -776,18 +968,124 @@
       line-height: 1.6;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       body {
-        padding: 12px 10px 40px;
+        padding: 12px 8px 48px;
+      }
+      .container {
+        padding: 0;
       }
       .hero-card, .section-card {
-        padding: 16px;
+        padding: 14px 10px;
+        border-radius: 16px;
+      }
+      .top-nav {
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+      .nav-btn {
+        padding: 8px 14px;
+        font-size: 12px;
+        min-height: 38px;
+      }
+      .badge {
+        font-size: 11px;
+        padding: 4px 10px;
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      .subtitle {
+        font-size: 12px;
+      }
+      .team-switch-container {
+        gap: 4px;
+        padding: 3px;
+        border-radius: 14px;
+      }
+      .team-tab-btn {
+        padding: 8px 6px;
+        font-size: 12px;
+        min-height: 48px;
+        gap: 6px;
+      }
+      .team-tab-btn span {
+        font-size: 16px !important;
+      }
+      .hero-team-meta {
+        gap: 8px;
+      }
+      .team-shield-img {
+        width: 36px;
+        height: 36px;
+      }
+      .hero-title h2 {
+        font-size: 17px;
+      }
+      .rank-pill {
+        padding: 4px 10px;
+        font-size: 11px;
       }
       .kpi-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+      }
+      .kpi-card {
+        padding: 10px 8px;
+        border-radius: 12px;
+      }
+      .kpi-value {
+        font-size: 18px;
+      }
+      .kpi-label, .kpi-sub {
+        font-size: 10px;
+      }
+      .section-title {
+        font-size: 16px;
+      }
+      .subtabs {
+        width: 100%;
+        gap: 4px;
+        padding: 2px;
+      }
+      .subtab-btn {
+        font-size: 11px;
+        padding: 6px 10px;
       }
       .h2h-row {
-        grid-template-columns: 55px 1fr 55px;
+        grid-template-columns: 46px 1fr 46px;
+        font-size: 12px;
+      }
+      .match-item {
+        padding: 12px 10px;
+      }
+      .match-score-row {
+        font-size: 13px;
+        gap: 6px;
+      }
+      th, td {
+        padding: 9px 5px;
+        font-size: 12px;
+      }
+      .pts-badge {
+        font-size: 13px;
+      }
+      .team-name-text {
+        max-width: 110px;
+      }
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .team-name-text {
+        max-width: 85px;
+      }
+      th, td {
+        padding: 8px 4px;
+        font-size: 11px;
       }
     }
   </style>
@@ -923,31 +1221,23 @@
 
     <!-- Complete Standings Table -->
     <div class="section-card">
-      <div class="section-title-wrap">
+      <div class="table-header-bar">
         <div class="section-title">
-          <span>🏆</span> Group Standings Table (<span id="table-group-name">Grupo</span>)
+          <span>🏆</span> Group Standings (<span id="table-group-name">Grupo</span>)
         </div>
-        <span style="font-size: 12px; color: var(--text-subtle);">Click headers to sort</span>
+        <div class="view-toggle">
+          <button id="btn-view-compact" class="view-btn active" onclick="setTableView('compact')">⚡ Compact</button>
+          <button id="btn-view-full" class="view-btn" onclick="setTableView('full')">📊 Detailed</button>
+        </div>
+      </div>
+      <div class="table-subbar">
+        <span class="table-hint">💡 Tap any team to expand stats & breakdown</span>
+        <span>Click headers to sort</span>
       </div>
 
-      <div class="table-wrap">
+      <div class="table-wrap compact-view">
         <table id="standings-table">
-          <thead>
-            <tr>
-              <th onclick="sortTable('pos')">POS</th>
-              <th></th>
-              <th>TEAM</th>
-              <th onclick="sortTable('pj')">PJ</th>
-              <th onclick="sortTable('total_sets')">SETS</th>
-              <th onclick="sortTable('diff_sets')">SF-SC</th>
-              <th onclick="sortTable('pts_scored_per_set')">PF / SET</th>
-              <th onclick="sortTable('pts_conceded_per_set')">PC / SET</th>
-              <th onclick="sortTable('diff_points_per_set')">NET / SET</th>
-              <th onclick="sortTable('point_ratio')">RATIO (PF/PC)</th>
-              <th onclick="sortTable('diff_points')">PF-PC TOTAL</th>
-              <th onclick="sortTable('pts')" class="active-sort">PTS ▾</th>
-            </tr>
-          </thead>
+          <thead id="standings-thead"></thead>
           <tbody id="standings-tbody"></tbody>
         </table>
       </div>
@@ -981,7 +1271,7 @@
   <!-- Embedded Live Snapshot Data -->
   <script id="initial-stats" type="application/json">
 {
-  "generated_at": "2026-11-03T22:17:22.212195+00:00",
+  "generated_at": "2026-11-06T10:43:32.103670+00:00",
   "teams": [
     {
       "team_name": "CV FURIA",
@@ -1872,6 +2162,7 @@
 
     function switchTeam(teamId) {
       currentTeamId = teamId;
+      if (window.expandedTeams) window.expandedTeams.clear();
       document.getElementById('tab-masc').classList.toggle('active', teamId === 'senior-masculino');
       document.getElementById('tab-fem').classList.toggle('active', teamId === 'senior-femenino');
       renderApp();
@@ -1969,6 +2260,7 @@
 
       // Render Standings Table
       document.getElementById('table-group-name').textContent = teamData.group_name || 'Group';
+      renderStandingsTableHeader();
       renderStandingsTable(standings);
 
       // Render Matches
@@ -2190,26 +2482,107 @@
       `;
     }
 
+    let currentTableView = 'compact';
+    const expandedTeams = new Set();
+    window.expandedTeams = expandedTeams;
+
+    function setTableView(mode) {
+      currentTableView = mode;
+      const btnCompact = document.getElementById('btn-view-compact');
+      const btnFull = document.getElementById('btn-view-full');
+      if (btnCompact) btnCompact.classList.toggle('active', mode === 'compact');
+      if (btnFull) btnFull.classList.toggle('active', mode === 'full');
+
+      const wrap = document.querySelector('.table-wrap');
+      if (wrap) {
+        wrap.classList.toggle('compact-view', mode === 'compact');
+        wrap.classList.toggle('full-view', mode === 'full');
+      }
+
+      renderStandingsTableHeader();
+      const teamData = getActiveTeamData();
+      if (teamData) {
+        renderStandingsTable(teamData.standings);
+      }
+    }
+
+    function renderStandingsTableHeader() {
+      const thead = document.getElementById('standings-thead');
+      if (!thead) return;
+
+      const arrow = (col) => currentSort.column === col ? (currentSort.asc ? ' ▴' : ' ▾') : '';
+      const cls = (col) => currentSort.column === col ? 'active-sort' : '';
+
+      if (currentTableView === 'compact') {
+        thead.innerHTML = `
+          <tr>
+            <th onclick="sortTable('pos')" class="${cls('pos')}" style="width: 44px; text-align: left;">#${arrow('pos')}</th>
+            <th onclick="sortTable('team')" class="${cls('team')}" style="text-align: left;">TEAM${arrow('team')}</th>
+            <th onclick="sortTable('pj')" class="${cls('pj')}" style="width: 38px; text-align: center;">PJ${arrow('pj')}</th>
+            <th onclick="sortTable('win_rate')" class="${cls('win_rate')}" style="width: 48px; text-align: center;">W-L${arrow('win_rate')}</th>
+            <th onclick="sortTable('diff_sets')" class="${cls('diff_sets')}" style="width: 60px; text-align: center;">SETS${arrow('diff_sets')}</th>
+            <th onclick="sortTable('pts')" class="${cls('pts')}" style="width: 48px; text-align: right;">PTS${arrow('pts')}</th>
+          </tr>
+        `;
+      } else {
+        thead.innerHTML = `
+          <tr>
+            <th onclick="sortTable('pos')" class="col-sticky-pos ${cls('pos')}">POS${arrow('pos')}</th>
+            <th style="width: 22px;"></th>
+            <th onclick="sortTable('team')" class="col-sticky-team ${cls('team')}">TEAM${arrow('team')}</th>
+            <th onclick="sortTable('pj')" class="${cls('pj')}" style="text-align: center;">PJ${arrow('pj')}</th>
+            <th onclick="sortTable('win_rate')" class="${cls('win_rate')}" style="text-align: center;">W-L${arrow('win_rate')}</th>
+            <th onclick="sortTable('total_sets')" class="${cls('total_sets')}" style="text-align: center;">SETS${arrow('total_sets')}</th>
+            <th onclick="sortTable('diff_sets')" class="${cls('diff_sets')}" style="text-align: center;">SF-SC${arrow('diff_sets')}</th>
+            <th onclick="sortTable('pts_scored_per_set')" class="${cls('pts_scored_per_set')}">PF / SET${arrow('pts_scored_per_set')}</th>
+            <th onclick="sortTable('pts_conceded_per_set')" class="${cls('pts_conceded_per_set')}">PC / SET${arrow('pts_conceded_per_set')}</th>
+            <th onclick="sortTable('diff_points_per_set')" class="${cls('diff_points_per_set')}">NET / SET${arrow('diff_points_per_set')}</th>
+            <th onclick="sortTable('point_ratio')" class="${cls('point_ratio')}">RATIO${arrow('point_ratio')}</th>
+            <th onclick="sortTable('diff_points')" class="${cls('diff_points')}">PF-PC${arrow('diff_points')}</th>
+            <th onclick="sortTable('pts')" class="${cls('pts')}" style="text-align: right;">PTS${arrow('pts')}</th>
+          </tr>
+        `;
+      }
+    }
+
+    function toggleTeamDetail(posKey) {
+      if (expandedTeams.has(posKey)) {
+        expandedTeams.delete(posKey);
+      } else {
+        expandedTeams.add(posKey);
+      }
+      const teamData = getActiveTeamData();
+      if (teamData) {
+        renderStandingsTable(teamData.standings);
+      }
+    }
+
+    function compareWithTeam(teamName) {
+      const h2hBtn = document.querySelectorAll('.section-card .section-title-wrap .subtab-btn')[2];
+      if (h2hBtn) switchCompMode('h2h', h2hBtn);
+      const select = document.getElementById('h2h-opponent-select');
+      if (select) {
+        for (let i = 0; i < select.options.length; i++) {
+          if (select.options[i].value === teamName || select.options[i].text.includes(teamName)) {
+            select.selectedIndex = i;
+            renderH2H();
+            break;
+          }
+        }
+      }
+      const section = document.querySelector('.section-card');
+      if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     function sortTable(column) {
       if (currentSort.column === column) {
         currentSort.asc = !currentSort.asc;
       } else {
         currentSort.column = column;
-        currentSort.asc = column === 'pos'; // pos defaults to ascending, stats to descending
+        currentSort.asc = (column === 'pos' || column === 'team');
       }
 
-      document.querySelectorAll('#standings-table th').forEach(th => {
-        th.classList.remove('active-sort');
-      });
-
-      const activeHeader = Array.from(document.querySelectorAll('#standings-table th')).find(th => {
-        const attr = th.getAttribute('onclick') || '';
-        return attr.includes(`'${column}'`);
-      });
-      if (activeHeader) {
-        activeHeader.classList.add('active-sort');
-      }
-
+      renderStandingsTableHeader();
       const teamData = getActiveTeamData();
       if (teamData) {
         renderStandingsTable(teamData.standings);
@@ -2218,28 +2591,43 @@
 
     function renderStandingsTable(standings) {
       const tbody = document.getElementById('standings-tbody');
+      if (!tbody) return;
       tbody.innerHTML = '';
       if (!standings || !standings.length) return;
 
       const sorted = [...standings].sort((a, b) => {
-        const vA = a[currentSort.column] ?? 0;
-        const vB = b[currentSort.column] ?? 0;
+        let vA, vB;
+        if (currentSort.column === 'team') {
+          vA = (a.team || '').toLowerCase();
+          vB = (b.team || '').toLowerCase();
+        } else if (currentSort.column === 'win_rate') {
+          vA = ((a.pg3 || 0) + (a.pg2 || 0)) * 1000 + (a.pts || 0);
+          vB = ((b.pg3 || 0) + (b.pg2 || 0)) * 1000 + (b.pts || 0);
+        } else {
+          vA = a[currentSort.column] ?? 0;
+          vB = b[currentSort.column] ?? 0;
+        }
         return currentSort.asc ? (vA > vB ? 1 : -1) : (vA < vB ? 1 : -1);
       });
 
       const isMasc = currentTeamId === 'senior-masculino';
       const furiaRowClass = isMasc ? 'is-furia-row masc' : 'is-furia-row fem';
       const youBadgeColor = isMasc ? '#F94343' : '#a78bfa';
+      const youBadgeBg = isMasc ? 'rgba(249, 67, 67, 0.2)' : 'rgba(100, 48, 232, 0.2)';
+      const colspan = currentTableView === 'compact' ? 6 : 13;
 
       sorted.forEach(s => {
         const isFuria = s.is_our_team || (s.team && s.team.toUpperCase().includes('FURIA'));
-        const tr = document.createElement('tr');
-        if (isFuria) tr.className = furiaRowClass;
+        const posKey = String(s.pos);
+        const isExpanded = expandedTeams.has(posKey);
 
         let trendSymbol = '—';
         let trendClass = 'trend-same';
         if (s.trend === 'up') { trendSymbol = '▲'; trendClass = 'trend-up'; }
         if (s.trend === 'down') { trendSymbol = '▼'; trendClass = 'trend-down'; }
+
+        const wins = (s.pg3 || 0) + (s.pg2 || 0);
+        const losses = (s.pp1 || 0) + (s.pp0 || 0);
 
         const diffP = s.diff_points || 0;
         const diffPSign = diffP > 0 ? '+' : '';
@@ -2253,26 +2641,106 @@
         const diffSSign = diffS > 0 ? '+' : '';
         const diffSClass = diffS >= 0 ? 'positive-text' : 'negative-text';
 
-        tr.innerHTML = `
-          <td style="font-weight:700;">${s.pos}º</td>
-          <td><span class="trend-arrow ${trendClass}">${trendSymbol}</span></td>
-          <td>
-            <div style="display:flex; align-items:center; gap:8px;">
-              ${s.shield ? `<img src="${s.shield}" class="team-mini-shield" alt="">` : ''}
-              <span>${s.team} ${isFuria ? `<span style="color:${youBadgeColor}; font-size:11px; font-weight:700;">(YOU)</span>` : ''}</span>
-            </div>
-          </td>
-          <td>${s.pj}</td>
-          <td><strong>${s.total_sets || (s.sf + s.sc)}</strong></td>
-          <td><span class="${diffSClass}">${diffSSign}${diffS}</span> <span style="color:var(--text-subtle); font-size:11px;">(${s.sf}-${s.sc})</span></td>
-          <td style="color:var(--green); font-weight:600;">${(s.pts_scored_per_set || 0).toFixed(1)}</td>
-          <td style="color:var(--red); font-weight:600;">${(s.pts_conceded_per_set || 0).toFixed(1)}</td>
-          <td><strong class="${diffPSetClass}">${diffPSetSign}${diffPSet.toFixed(2)}</strong></td>
-          <td><strong style="color: #60a5fa;">${(s.point_ratio || 0).toFixed(3)}</strong></td>
-          <td><span class="${diffPClass}">${diffPSign}${diffP}</span> <span style="color:var(--text-subtle); font-size:11px;">(${s.pf}-${s.pc})</span></td>
-          <td><span class="pts-badge">${s.pts}</span></td>
-        `;
+        const tr = document.createElement('tr');
+        tr.className = `team-row ${isFuria ? furiaRowClass : ''} ${isExpanded ? 'expanded' : ''}`;
+        tr.onclick = () => toggleTeamDetail(posKey);
+
+        if (currentTableView === 'compact') {
+          tr.innerHTML = `
+            <td style="font-weight:700;">
+              <span>${s.pos}º</span>
+              <span class="trend-arrow ${trendClass}" style="font-size:10px; margin-left:2px;">${trendSymbol}</span>
+            </td>
+            <td>
+              <div class="team-cell-wrap">
+                ${s.shield ? `<img src="${s.shield}" class="team-mini-shield" alt="">` : ''}
+                <span class="team-name-text">${s.team}</span>
+                ${isFuria ? `<span class="you-badge" style="background:${youBadgeBg}; color:${youBadgeColor};">YOU</span>` : ''}
+                <span class="team-expand-icon">▾</span>
+              </div>
+            </td>
+            <td style="text-align:center; font-weight:600;">${s.pj}</td>
+            <td style="text-align:center; font-weight:700;"><span style="color:var(--green)">${wins}</span>-<span style="color:var(--red)">${losses}</span></td>
+            <td style="text-align:center;">
+              <span class="${diffSClass}" style="font-weight:700;">${diffSSign}${diffS}</span>
+              <span style="color:var(--text-subtle); font-size:11px; display:block; line-height:1;">${s.sf}:${s.sc}</span>
+            </td>
+            <td style="text-align:right;"><span class="pts-badge">${s.pts}</span></td>
+          `;
+        } else {
+          tr.innerHTML = `
+            <td class="col-sticky-pos" style="font-weight:700;">${s.pos}º</td>
+            <td><span class="trend-arrow ${trendClass}">${trendSymbol}</span></td>
+            <td class="col-sticky-team">
+              <div class="team-cell-wrap">
+                ${s.shield ? `<img src="${s.shield}" class="team-mini-shield" alt="">` : ''}
+                <span class="team-name-text">${s.team}</span>
+                ${isFuria ? `<span class="you-badge" style="background:${youBadgeBg}; color:${youBadgeColor};">YOU</span>` : ''}
+                <span class="team-expand-icon">▾</span>
+              </div>
+            </td>
+            <td style="text-align:center;">${s.pj}</td>
+            <td style="text-align:center; font-weight:700;"><span style="color:var(--green)">${wins}</span>-<span style="color:var(--red)">${losses}</span></td>
+            <td style="text-align:center;"><strong>${s.total_sets || (s.sf + s.sc)}</strong></td>
+            <td style="text-align:center;"><span class="${diffSClass}">${diffSSign}${diffS}</span> <span style="color:var(--text-subtle); font-size:11px;">(${s.sf}-${s.sc})</span></td>
+            <td style="color:var(--green); font-weight:600;">${(s.pts_scored_per_set || 0).toFixed(1)}</td>
+            <td style="color:var(--red); font-weight:600;">${(s.pts_conceded_per_set || 0).toFixed(1)}</td>
+            <td><strong class="${diffPSetClass}">${diffPSetSign}${diffPSet.toFixed(2)}</strong></td>
+            <td><strong style="color: #60a5fa;">${(s.point_ratio || 0).toFixed(3)}</strong></td>
+            <td><span class="${diffPClass}">${diffPSign}${diffP}</span> <span style="color:var(--text-subtle); font-size:11px;">(${s.pf}-${s.pc})</span></td>
+            <td style="text-align:right;"><span class="pts-badge">${s.pts}</span></td>
+          `;
+        }
         tbody.appendChild(tr);
+
+        // Expandable Detail Row
+        if (isExpanded) {
+          const detailTr = document.createElement('tr');
+          detailTr.className = 'detail-row';
+          detailTr.innerHTML = `
+            <td colspan="${colspan}">
+              <div class="team-detail-card ${isMasc ? 'masc' : 'fem'}">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+                  <div style="font-weight:700; font-size:13px; color:#fff; display:flex; align-items:center; gap:6px;">
+                    ${s.shield ? `<img src="${s.shield}" class="team-mini-shield" alt="">` : ''}
+                    <span>${s.team} ${isFuria ? '(Our Team)' : ''}</span>
+                  </div>
+                  <div style="font-size:11px; color:var(--text-muted);">${s.pos}º position · ${s.pts} PTS · ${s.pj} played (${(s.pts_per_game || 0).toFixed(1)} pts/match)</div>
+                </div>
+                <div class="detail-grid">
+                  <div class="detail-box">
+                    <div class="detail-box-label">Match Record</div>
+                    <div class="detail-box-val" style="color:var(--green);">${wins}W - ${losses}L <span style="font-size:11px; color:var(--text-muted); font-weight:normal;">(${s.win_rate}%)</span></div>
+                    <div class="detail-box-sub">${s.pg3}x (3-0/1) · ${s.pg2}x (3-2) · ${s.pp1}x (2-3) · ${s.pp0}x (0-3)</div>
+                  </div>
+                  <div class="detail-box">
+                    <div class="detail-box-label">Sets (SF / SC)</div>
+                    <div class="detail-box-val"><span class="${diffSClass}">${diffSSign}${diffS}</span> <span style="font-size:11px; color:var(--text-muted); font-weight:normal;">(${s.sf} won · ${s.sc} lost)</span></div>
+                    <div class="detail-box-sub">Set Ratio: ${(s.set_ratio || 0).toFixed(2)} · ${s.total_sets || (s.sf+s.sc)} sets total</div>
+                  </div>
+                  <div class="detail-box">
+                    <div class="detail-box-label">Rally Points (PF / PC)</div>
+                    <div class="detail-box-val"><span class="${diffPClass}">${diffPSign}${diffP}</span> <span style="font-size:11px; color:var(--text-muted); font-weight:normal;">(${s.pf} scored · ${s.pc} conceded)</span></div>
+                    <div class="detail-box-sub">Point Ratio (Tiebreaker): <strong style="color:#60a5fa">${(s.point_ratio || 0).toFixed(3)}</strong></div>
+                  </div>
+                  <div class="detail-box">
+                    <div class="detail-box-label">Scoring Power / Set</div>
+                    <div class="detail-box-val"><span style="color:var(--green)">${(s.pts_scored_per_set || 0).toFixed(1)}</span> / <span style="color:var(--red)">${(s.pts_conceded_per_set || 0).toFixed(1)}</span></div>
+                    <div class="detail-box-sub">Net Margin: <strong class="${diffPSetClass}">${diffPSetSign}${(s.diff_points_per_set || 0).toFixed(2)}</strong> pts / set</div>
+                  </div>
+                </div>
+                ${!isFuria ? `
+                  <div style="margin-top:10px; display:flex; justify-content:flex-end;">
+                    <button class="view-btn" style="background:rgba(59,130,246,0.18); color:#93c5fd; border:1px solid rgba(59,130,246,0.35); font-size:11px; padding:5px 12px;" onclick="event.stopPropagation(); compareWithTeam('${s.team.replace(/'/g, "\\'")}')">
+                      ⚔️ Compare H2H with CV FURIA
+                    </button>
+                  </div>
+                ` : ''}
+              </div>
+            </td>
+          `;
+          tbody.appendChild(detailTr);
+        }
       });
     }
 
