@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CV FURIA · Match Sounds 🔊</title>
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="CV FURIA · Match Sounds 🔊">
+  <meta property="og:description" content="Instant volleyball match jingles and rally sounds for courtside Bluetooth speaker.">
+  <meta name="theme-color" content="#0f172a">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.85);
+      --card-border: rgba(255, 255, 255, 0.1);
+      --card-border-active: rgba(255, 255, 255, 0.25);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --furia-red: #F94343;
+      --furia-purple: #6430E8;
+      --gold: #f59e0b;
+      --green: #10b981;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(135deg, #0b0f19 0%, #1e1e38 50%, #0f172a 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px 14px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* Top Nav */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-btn.active {
+      color: #fff;
+      background: rgba(59, 130, 246, 0.2);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      padding-top: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(249, 67, 67, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(249, 67, 67, 0.3);
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #fff 40%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Sticky DJ Master Command Strip */
+    .master-strip {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 18px;
+      padding: 12px 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .master-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Big Emergency Stop Button */
+    .btn-stop-all {
+      flex: 1;
+      min-height: 52px;
+      background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(220, 38, 38, 0.35);
+      transition: all 0.15s ease;
+    }
+
+    .btn-stop-all:active {
+      transform: scale(0.97);
+      background: linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%);
+    }
+
+    .btn-stop-all.pulse {
+      animation: pulse-border 1.4s infinite;
+      border-color: #f87171;
+    }
+
+    @keyframes pulse-border {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8); }
+      70% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    /* Secondary Controls */
+    .controls-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .vol-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      flex: 1;
+    }
+
+    .vol-slider {
+      flex: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .vol-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3b82f6;
+      cursor: pointer;
+      box-shadow: 0 0 6px rgba(59, 130, 246, 0.8);
+    }
+
+    .pill-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 6px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .pill-toggle.active {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(59, 130, 246, 0.5);
+      color: #60a5fa;
+    }
+
+    /* SFX Large Pads Grid (2x2 layout, big thumb-friendly buttons) */
+    .pads-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .pad-btn {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-height: 140px;
+      cursor: pointer;
+      transition: transform 0.12s ease, border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .pad-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Individual Color Themes */
+    .pad-btn.pad-gold {
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.12) 0%, rgba(30, 41, 59, 0.95) 100%);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+    .pad-btn.pad-gold.playing {
+      border-color: #f59e0b;
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.35) 0%, rgba(30, 41, 59, 0.95) 100%);
+      box-shadow: 0 0 24px rgba(245, 158, 11, 0.45);
+    }
+
+    .pad-btn.pad-red {
+      background: linear-gradient(145deg, rgba(249, 67, 67, 0.14) 0%, rgba(30, 41, 59, 0.95) 100%);
+      border-color: rgba(249, 67, 67, 0.3);
+    }
+    .pad-btn.pad-red.playing {
+      border-color: #ef4444;
+      background: linear-gradient(145deg, rgba(239, 68, 68, 0.35) 0%, rgba(30, 41, 59, 0.95) 100%);
+      box-shadow: 0 0 24px rgba(239, 68, 68, 0.45);
+    }
+
+    .pad-btn.pad-green {
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.12) 0%, rgba(30, 41, 59, 0.95) 100%);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+    .pad-btn.pad-green.playing {
+      border-color: #10b981;
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.35) 0%, rgba(30, 41, 59, 0.95) 100%);
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.45);
+    }
+
+    .pad-btn.pad-blue {
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.12) 0%, rgba(30, 41, 59, 0.95) 100%);
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    .pad-btn.pad-blue.playing {
+      border-color: #3b82f6;
+      background: linear-gradient(145deg, rgba(59, 130, 246, 0.35) 0%, rgba(30, 41, 59, 0.95) 100%);
+      box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
+    }
+
+    .pad-btn.pad-purple {
+      background: linear-gradient(145deg, rgba(168, 85, 247, 0.14) 0%, rgba(30, 41, 59, 0.95) 100%);
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+    .pad-btn.pad-purple.playing {
+      border-color: #a855f7;
+      background: linear-gradient(145deg, rgba(168, 85, 247, 0.35) 0%, rgba(30, 41, 59, 0.95) 100%);
+      box-shadow: 0 0 24px rgba(168, 85, 247, 0.45);
+    }
+
+    .pad-btn.pad-pink {
+      background: linear-gradient(145deg, rgba(244, 63, 94, 0.14) 0%, rgba(30, 41, 59, 0.95) 100%);
+      border-color: rgba(244, 63, 94, 0.3);
+    }
+    .pad-btn.pad-pink.playing {
+      border-color: #f43f5e;
+      background: linear-gradient(145deg, rgba(244, 63, 94, 0.35) 0%, rgba(30, 41, 59, 0.95) 100%);
+      box-shadow: 0 0 24px rgba(244, 63, 94, 0.45);
+    }
+
+    .pad-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .pad-icon {
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .pad-duration {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 4px 8px;
+      border-radius: 8px;
+    }
+
+    .pad-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 5px;
+    }
+
+    .pad-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    /* Animated Sound Wave */
+    .sound-bars {
+      display: none;
+      align-items: flex-end;
+      gap: 3px;
+      height: 16px;
+    }
+
+    .pad-btn.playing .sound-bars {
+      display: flex;
+    }
+
+    .bar {
+      width: 3.5px;
+      height: 100%;
+      background: currentColor;
+      border-radius: 1px;
+      animation: sound-bounce 0.8s ease-in-out infinite alternate;
+    }
+    .bar:nth-child(1) { animation-delay: 0.1s; }
+    .bar:nth-child(2) { animation-delay: 0.3s; }
+    .bar:nth-child(3) { animation-delay: 0.2s; }
+    .bar:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes sound-bounce {
+      0% { height: 20%; }
+      100% { height: 100%; }
+    }
+
+    /* Bluetooth Status Card */
+    .bt-hint {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .bt-hint-icon {
+      font-size: 24px;
+      color: #60a5fa;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #10b981;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 420px) {
+      .pads-grid {
+        gap: 10px;
+      }
+      .pad-btn {
+        padding: 16px 12px;
+        min-height: 128px;
+        border-radius: 16px;
+      }
+      .pad-icon {
+        font-size: 28px;
+      }
+      .pad-name {
+        font-size: 15px;
+      }
+      .pad-desc {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Top Nav -->
+    <nav class="top-nav">
+      <a class="nav-btn" href="index.html">📅 Match Calendar</a>
+      <a class="nav-btn" href="stats.html">📊 Stats & Points</a>
+      <a class="nav-btn active" href="sounds.html">🔊 Match Sounds</a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+      <div class="badge">FVBCV 2026–2027 ⚡</div>
+      <h1>CV FURIA · Match Sounds</h1>
+      <p class="subtitle">Instant volleyball match jingles for courtside Bluetooth speaker</p>
+    </header>
+
+    <!-- Sticky DJ Master Strip -->
+    <div class="master-strip">
+      <div class="master-row">
+        <button id="btn-stop-all" class="btn-stop-all" onclick="stopAllSounds()">
+          <span>🛑</span> STOP ALL AUDIO
+        </button>
+      </div>
+
+      <div class="controls-row">
+        <!-- Master Volume -->
+        <div class="vol-box">
+          <span id="vol-icon" style="font-size: 14px;">🔊</span>
+          <input type="range" id="master-vol" class="vol-slider" min="0" max="1" step="0.05" value="1" oninput="changeMasterVolume(this.value)">
+          <span id="vol-label" style="font-size: 11px; min-width: 32px; text-align: right;">100%</span>
+        </div>
+
+        <!-- Mode Toggle (Single vs Overlap) -->
+        <button id="toggle-mode" class="pill-toggle active" onclick="togglePlayMode()" title="When active, tapping a sound stops previous sound">
+          ⚡ Single Play
+        </button>
+
+        <!-- Keep Screen Awake (Wake Lock) -->
+        <button id="toggle-wake" class="pill-toggle" onclick="toggleWakeLock()" title="Keep phone screen awake during games">
+          📱 Keep Awake
+        </button>
+      </div>
+    </div>
+
+    <!-- Match Sounds 2x2 Grid -->
+    <div class="pads-grid">
+
+      <!-- Ace VNL -->
+      <button class="pad-btn pad-gold" id="pad-ace" onclick="playPad('pad-ace', 'audio/ace-vnl.mp3')">
+        <div class="pad-top">
+          <span class="pad-icon">🏐</span>
+          <div class="sound-bars" style="color: #f59e0b;"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+          <span class="pad-duration">8s</span>
+        </div>
+        <div>
+          <div class="pad-name">ACE! (VNL)</div>
+          <div class="pad-desc">Volleyball Nations League Ace horn & hype</div>
+        </div>
+      </button>
+
+      <!-- Super Spike -->
+      <button class="pad-btn pad-red" id="pad-spike2" onclick="playPad('pad-spike2', 'audio/super-spike-2.mp3')">
+        <div class="pad-top">
+          <span class="pad-icon">💥</span>
+          <div class="sound-bars" style="color: #ef4444;"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+          <span class="pad-duration">8s</span>
+        </div>
+        <div>
+          <div class="pad-name">SUPER SPIKE</div>
+          <div class="pad-desc">VNL spike hit impact sting</div>
+        </div>
+      </button>
+
+      <!-- Monster Block -->
+      <button class="pad-btn pad-purple" id="pad-block" onclick="playPad('pad-block', 'audio/monster-block.mp3')">
+        <div class="pad-top">
+          <span class="pad-icon">🧱</span>
+          <div class="sound-bars" style="color: #a855f7;"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+          <span class="pad-duration">16s</span>
+        </div>
+        <div>
+          <div class="pad-name">MONSTER BLOCK!</div>
+          <div class="pad-desc">VNL Monster Block crowd chant & beat</div>
+        </div>
+      </button>
+
+      <!-- Emotional Damage -->
+      <button class="pad-btn pad-pink" id="pad-emotional" onclick="playPad('pad-emotional', 'audio/emotional-damage-meme.mp3')">
+        <div class="pad-top">
+          <span class="pad-icon">💔</span>
+          <div class="sound-bars" style="color: #f43f5e;"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+          <span class="pad-duration">3s</span>
+        </div>
+        <div>
+          <div class="pad-name">EMOTIONAL DAMAGE</div>
+          <div class="pad-desc">Classic meme sting for big rejections</div>
+        </div>
+      </button>
+
+      <!-- That's The Way -->
+      <button class="pad-btn pad-green" id="pad-thatsway" onclick="playPad('pad-thatsway', 'audio/thats-the-way_iXIN7CQ.mp3')">
+        <div class="pad-top">
+          <span class="pad-icon">🎉</span>
+          <div class="sound-bars" style="color: #10b981;"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+          <span class="pad-duration">9s</span>
+        </div>
+        <div>
+          <div class="pad-name">THAT'S THE WAY</div>
+          <div class="pad-desc">"Uh-huh, uh-huh, I like it!" celebration</div>
+        </div>
+      </button>
+
+      <!-- Game On / Start -->
+      <button class="pad-btn pad-blue" id="pad-start" onclick="playPad('pad-start', 'audio/start-2.mp3')">
+        <div class="pad-top">
+          <span class="pad-icon">🏁</span>
+          <div class="sound-bars" style="color: #3b82f6;"><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div></div>
+          <span class="pad-duration">6s</span>
+        </div>
+        <div>
+          <div class="pad-name">GAME ON / START</div>
+          <div class="pad-desc">Siren & countdown buzzer horn</div>
+        </div>
+      </button>
+
+    </div>
+
+    <!-- Bluetooth & Courtside DJ Tips -->
+    <div class="bt-hint">
+      <span class="bt-hint-icon">📱</span>
+      <div>
+        <strong>Courtside Tip:</strong> Pair your phone with the arena Bluetooth speaker. Hit <strong>STOP ALL</strong> (or press <kbd>Space</kbd>) instantly whenever the referee whistles for service!
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      CV FURIA · Club Voleibol · FVBCV 2026–2027<br>
+      Match Sounds & Arena Audio
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast"></div>
+
+  <script>
+    // State management
+    let masterVolume = 1.0;
+    let singlePlayMode = true; // when true, playing a sound stops all others
+    let padPlayers = {}; // padId -> { audio, btn }
+    let wakeLockSentinel = null;
+
+    // Toast helper
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 2000);
+    }
+
+    // Update stop button pulsing state
+    function updateStopButtonState() {
+      const btn = document.getElementById('btn-stop-all');
+      const isAnyPlaying = Object.values(padPlayers).some(p => p.audio && !p.audio.paused);
+      if (isAnyPlaying) {
+        btn.classList.add('pulse');
+      } else {
+        btn.classList.remove('pulse');
+      }
+    }
+
+    // Master Volume Change
+    function changeMasterVolume(val) {
+      masterVolume = parseFloat(val);
+      document.getElementById('vol-label').textContent = `${Math.round(masterVolume * 100)}%`;
+      const icon = document.getElementById('vol-icon');
+      if (masterVolume === 0) icon.textContent = '🔇';
+      else if (masterVolume < 0.5) icon.textContent = '🔉';
+      else icon.textContent = '🔊';
+
+      Object.values(padPlayers).forEach(p => {
+        if (p.audio) p.audio.volume = masterVolume;
+      });
+    }
+
+    // Toggle Single Play vs Overlap
+    function togglePlayMode() {
+      singlePlayMode = !singlePlayMode;
+      const btn = document.getElementById('toggle-mode');
+      if (singlePlayMode) {
+        btn.classList.add('active');
+        btn.textContent = '⚡ Single Play';
+        showToast('Single Play: New sound stops previous');
+      } else {
+        btn.classList.remove('active');
+        btn.textContent = '🔀 Overlap Mode';
+        showToast('Overlap Mode: Sounds can layer');
+      }
+    }
+
+    // Screen Wake Lock API
+    async function toggleWakeLock() {
+      const btn = document.getElementById('toggle-wake');
+      if ('wakeLock' in navigator) {
+        try {
+          if (!wakeLockSentinel) {
+            wakeLockSentinel = await navigator.wakeLock.request('screen');
+            btn.classList.add('active');
+            showToast('Screen will stay awake during match');
+            wakeLockSentinel.addEventListener('release', () => {
+              wakeLockSentinel = null;
+              btn.classList.remove('active');
+            });
+          } else {
+            await wakeLockSentinel.release();
+            wakeLockSentinel = null;
+            btn.classList.remove('active');
+            showToast('Screen wake lock released');
+          }
+        } catch (err) {
+          showToast('Wake Lock not available');
+        }
+      } else {
+        showToast('Wake Lock not supported on this browser');
+      }
+    }
+
+    // STOP ALL
+    function stopAllSounds() {
+      Object.keys(padPlayers).forEach(id => {
+        const item = padPlayers[id];
+        if (item && item.audio) {
+          try {
+            item.audio.pause();
+            item.audio.currentTime = 0;
+          } catch (e) {}
+        }
+      });
+      padPlayers = {};
+
+      document.querySelectorAll('.pad-btn').forEach(btn => {
+        btn.classList.remove('playing');
+      });
+
+      updateStopButtonState();
+      showToast('All sounds stopped');
+    }
+
+    // One-Shot Pad Play / Stop on 2nd Click
+    function playPad(padId, src) {
+      const btn = document.getElementById(padId);
+
+      // 2nd click on the same active tile -> stop it
+      if (padPlayers[padId] && !padPlayers[padId].audio.paused) {
+        try {
+          padPlayers[padId].audio.pause();
+          padPlayers[padId].audio.currentTime = 0;
+        } catch (e) {}
+        btn.classList.remove('playing');
+        delete padPlayers[padId];
+        updateStopButtonState();
+        return;
+      }
+
+      // If in single play mode, stop other playing sounds
+      if (singlePlayMode) {
+        stopAllSounds();
+      }
+
+      const audio = new Audio(src);
+      audio.volume = masterVolume;
+      padPlayers[padId] = { audio, btn };
+
+      btn.classList.add('playing');
+      updateStopButtonState();
+
+      audio.play().catch(e => {
+        console.warn('Playback error:', e);
+        btn.classList.remove('playing');
+        delete padPlayers[padId];
+        updateStopButtonState();
+      });
+
+      audio.onended = () => {
+        btn.classList.remove('playing');
+        delete padPlayers[padId];
+        updateStopButtonState();
+      };
+    }
+
+    // Keyboard Shortcuts (Space stops all audio)
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+        e.preventDefault();
+        stopAllSounds();
+      }
+    });
+  </script>
+</body>
+</html>
