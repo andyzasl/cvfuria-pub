@@ -200,23 +200,15 @@
     }
 
     /* Secondary Controls */
-    .controls-row {
+    .vol-box {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .vol-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      gap: 10px;
       background: rgba(255, 255, 255, 0.05);
-      padding: 6px 12px;
-      border-radius: 10px;
+      padding: 8px 12px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      flex: 1;
+      width: 100%;
     }
 
     .vol-slider {
@@ -230,28 +222,39 @@
 
     .vol-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: #3b82f6;
       cursor: pointer;
       box-shadow: 0 0 6px rgba(59, 130, 246, 0.8);
     }
 
+    .toggles-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
     .pill-toggle {
+      flex: 1;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      justify-content: center;
+      gap: 6px;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 6px 10px;
+      padding: 8px 10px;
+      min-height: 38px;
       border-radius: 10px;
       cursor: pointer;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--text-muted);
       transition: all 0.2s ease;
       white-space: nowrap;
+      text-align: center;
     }
 
     .pill-toggle.active {
@@ -471,23 +474,6 @@
     }
 
     @media (max-width: 600px) {
-      /* Keep awake button out of screen on mobile */
-      #toggle-wake {
-        display: none !important;
-      }
-      .controls-row {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        width: 100%;
-      }
-      .vol-box {
-        flex: 1;
-        min-width: 0;
-      }
-      #toggle-mode {
-        flex-shrink: 0;
-      }
       .pads-grid {
         gap: 10px;
       }
@@ -504,6 +490,10 @@
       }
       .pad-desc {
         font-size: 11px;
+      }
+      .pill-toggle {
+        font-size: 12px;
+        padding: 7px 8px;
       }
     }
   </style>
@@ -534,14 +524,15 @@
         </button>
       </div>
 
-      <div class="controls-row">
-        <!-- Master Volume -->
-        <div class="vol-box">
-          <span id="vol-icon" style="font-size: 14px;">🔊</span>
-          <input type="range" id="master-vol" class="vol-slider" min="0" max="1" step="0.05" value="1" oninput="changeMasterVolume(this.value)">
-          <span id="vol-label" style="font-size: 11px; min-width: 32px; text-align: right;">100%</span>
-        </div>
+      <!-- Master Volume -->
+      <div class="vol-box">
+        <span id="vol-icon" style="font-size: 14px;">🔊</span>
+        <input type="range" id="master-vol" class="vol-slider" min="0" max="1" step="0.05" value="1" oninput="changeMasterVolume(this.value)">
+        <span id="vol-label" style="font-size: 11px; min-width: 32px; text-align: right;">100%</span>
+      </div>
 
+      <!-- Action Toggles Row: 50% / 50% side-by-side -->
+      <div class="toggles-row">
         <!-- Mode Toggle (Single vs Overlap) -->
         <button id="toggle-mode" class="pill-toggle active" onclick="togglePlayMode()" title="When active, tapping a sound stops previous sound">
           ⚡ Single Play
