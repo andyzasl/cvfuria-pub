@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CV FURIA · Match Sounds 🔊</title>
   
   <meta property="og:type" content="website">
@@ -27,12 +27,20 @@
       --green: #10b981;
     }
 
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
       user-select: none;
+      -webkit-user-select: none;
     }
 
     body {
@@ -44,12 +52,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      touch-action: pan-y;
     }
 
     .container {
       width: 100%;
       max-width: 520px;
       margin: 0 auto;
+      overflow-x: hidden;
+      touch-action: pan-y;
     }
 
     /* Top Nav */
@@ -272,6 +283,9 @@
       transition: transform 0.12s ease, border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
       overflow: hidden;
       text-align: left;
+      touch-action: pan-y;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     .pad-btn:active {
@@ -456,7 +470,24 @@
       opacity: 1;
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 600px) {
+      /* Keep awake button out of screen on mobile */
+      #toggle-wake {
+        display: none !important;
+      }
+      .controls-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+      }
+      .vol-box {
+        flex: 1;
+        min-width: 0;
+      }
+      #toggle-mode {
+        flex-shrink: 0;
+      }
       .pads-grid {
         gap: 10px;
       }
@@ -729,8 +760,35 @@
       showToast('All sounds stopped');
     }
 
+    // Allow smooth holding and scrolling without accidental audio trigger
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isDragging = false;
+
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches[0]) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        isDragging = false;
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches && e.touches[0]) {
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > 8 || dy > 8) {
+          isDragging = true;
+        }
+      }
+    }, { passive: true });
+
     // One-Shot Pad Play / Stop on 2nd Click
     function playPad(padId, src) {
+      if (isDragging) {
+        return; // Suppress playback if gesture was a scroll/drag
+      }
+
       const btn = document.getElementById(padId);
 
       // 2nd click on the same active tile -> stop it
