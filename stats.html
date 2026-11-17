@@ -26,6 +26,7 @@
       --google: #f2f5f9;
       --google-text: #1f2937;
       --success: #10b981;
+      --green: #10b981;
       --masc: #F94343;
       --fem: #6430E8;
       --gold: #f59e0b;
@@ -829,6 +830,8 @@
       padding: 12px 14px;
       border-left: 3px solid #3b82f6;
       background: rgba(255, 255, 255, 0.02);
+      min-width: 0;
+      max-width: 100%;
     }
 
     .team-detail-card.masc {
@@ -1230,16 +1233,49 @@
         padding: 12px 10px;
       }
       .match-score-row {
-        font-size: 13px;
-        gap: 6px;
+        font-size: 12px;
+        gap: 4px;
+      }
+      .match-score-center {
+        min-width: 0;
+      }
+      .match-vs-center {
+        padding: 2px 4px;
+        font-size: 11px;
+      }
+      .home-away-tag {
+        display: none;
       }
       .match-score-badge {
         font-size: 13px;
         padding: 3px 8px;
-        min-width: 52px;
+        min-width: 48px;
+      }
+      .table-wrap.compact-view table {
+        table-layout: fixed;
+        width: 100%;
+      }
+      .table-wrap.compact-view .team-name-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .table-wrap.compact-view th:nth-child(1) { width: 38px !important; }
+      .table-wrap.compact-view th:nth-child(2) { width: auto !important; }
+      .table-wrap.compact-view th:nth-child(3) { width: 28px !important; }
+      .table-wrap.compact-view th:nth-child(4) { width: 38px !important; }
+      .table-wrap.compact-view th:nth-child(5) { width: 46px !important; }
+      .table-wrap.compact-view th:nth-child(6) { width: 36px !important; }
+      .table-wrap.full-view .team-detail-card {
+        position: sticky;
+        left: 0;
+        width: calc(100vw - 38px);
+        max-width: calc(100vw - 38px);
+      }
+      .team-detail-card {
+        padding: 10px;
       }
       th, td {
-        padding: 9px 5px;
+        padding: 9px 4px;
         font-size: 12px;
       }
       .pts-badge {
@@ -1339,7 +1375,7 @@
     <div class="section-card">
       <div class="table-header-bar">
         <div class="section-title">
-          <span>🏆</span> Group Standings (<span id="table-group-name">Grupo</span>)
+          <span>🏆</span> <span>Group Standings (<span id="table-group-name">Grupo</span>)</span>
         </div>
         <div class="view-toggle">
           <button id="btn-view-compact" class="view-btn active" onclick="setTableView('compact')">⚡ Compact</button>
@@ -1372,7 +1408,7 @@
     <!-- Recent Match Results & Set Scores (Hidden) -->
     <div class="section-card" id="match-results-section" style="display: none;">
       <div class="section-title">
-        <span>🏐</span> Match Results & Set Breakdown (<span id="results-team-title">CV FURIA</span>)
+        <span>🏐</span> <span>Match Results & Set Breakdown (<span id="results-team-title">CV FURIA</span>)</span>
       </div>
       <p style="font-size: 13px; color: var(--text-muted); margin: 6px 0 14px;">
         Set-by-set rally score breakdown for completed games in the tournament.
@@ -1417,7 +1453,7 @@
     <div class="section-card" id="upcoming-section">
       <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
         <div class="section-title" style="margin-bottom: 0;">
-          <span>📅</span> Match Schedule (<span id="upcoming-team-title">CV FURIA</span>)
+          <span>📅</span> <span>Match Schedule (<span id="upcoming-team-title">CV FURIA</span>)</span>
         </div>
         <div class="filter-group" style="font-size: 13px;">
           <label for="upcoming-team-select" class="filter-label">Team:</label>
