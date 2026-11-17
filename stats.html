@@ -4502,7 +4502,7 @@
 
       document.getElementById('hero-shield').src = our.shield || 'https://appweb.fvbcv.com/backend/escudos/30/clubvoleibolfuria.png';
       document.getElementById('hero-team-name').textContent = our.team || 'CV FURIA';
-      document.getElementById('hero-comp-name').textContent = `${teamData.label} · ${teamData.badge || teamData.competition_name}`;
+      document.getElementById('hero-comp-name').textContent = teamData.badge || teamData.competition_name || teamData.label;
 
       const rankPill = document.getElementById('hero-rank-pill');
       rankPill.textContent = (our.pos ? our.pos + 'º' : '-') + (our.pos === 1 ? ' · Leader! 🏆' : ' Position');
