@@ -4464,6 +4464,7 @@
     function switchTeam(teamId) {
       currentTeamId = teamId;
       selectedTeam = null;
+      selectedUpcomingTeam = null;
       currentMatchTeamFilter = 'our';
       currentMatchRoundFilter = 'all';
       if (window.expandedTeams) window.expandedTeams.clear();
@@ -4719,6 +4720,7 @@
 
     let currentTableView = "compact";
     let selectedTeam = null;
+    let selectedUpcomingTeam = null;
     const expandedTeams = new Set();
     window.expandedTeams = expandedTeams;
     window.selectedTeam = selectedTeam;
@@ -4805,9 +4807,11 @@
       const ourTeamName = (getActiveTeamData()?.our_stats?.team) || 'CV FURIA';
       if (selectedTeam === teamName) {
         selectedTeam = null;
+        selectedUpcomingTeam = null;
         currentMatchTeamFilter = ourTeamName;
       } else {
         selectedTeam = teamName;
+        selectedUpcomingTeam = teamName;
         currentMatchTeamFilter = teamName;
       }
 
@@ -5111,43 +5115,27 @@
         select.appendChild(optgroup);
       }
 
-      select.value = selectedTeam || ourTeamName;
+      select.value = selectedUpcomingTeam || ourTeamName;
     }
 
     function onUpcomingTeamSelectChange(teamName) {
       const teamData = getActiveTeamData();
       const ourTeamName = teamData?.our_stats?.team || 'CV FURIA';
       if (!teamName || teamName === ourTeamName || teamName === 'our' || teamName === 'all') {
-        selectedTeam = null;
+        selectedUpcomingTeam = null;
         currentMatchTeamFilter = ourTeamName;
       } else {
-        selectedTeam = teamName;
+        selectedUpcomingTeam = teamName;
         currentMatchTeamFilter = teamName;
       }
 
-      if (teamData) {
-        if (currentTableView === "chart") {
-          renderPtsChart(teamData.standings, ourTeamName);
-        } else {
-          renderStandingsTable(teamData.standings);
-        }
-      }
       renderUpcoming();
     }
 
     function scrollToUpcoming(teamName) {
       if (teamName) {
-        selectedTeam = teamName;
+        selectedUpcomingTeam = teamName;
         currentMatchTeamFilter = teamName;
-        const teamData = getActiveTeamData();
-        const ourTeamName = teamData?.our_stats?.team || 'CV FURIA';
-        if (teamData) {
-          if (currentTableView === "chart") {
-            renderPtsChart(teamData.standings, ourTeamName);
-          } else {
-            renderStandingsTable(teamData.standings);
-          }
-        }
         renderUpcoming();
       }
       const section = document.getElementById('upcoming-section');
@@ -5383,7 +5371,7 @@
       const teamData = getActiveTeamData();
       if (!teamData) return;
       const ourTeamName = teamData.our_stats ? teamData.our_stats.team : 'CV FURIA';
-      const targetTeamName = selectedTeam || ourTeamName;
+      const targetTeamName = selectedUpcomingTeam || ourTeamName;
 
       if (titleEl) {
         titleEl.textContent = targetTeamName;
