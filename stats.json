@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-22T22:28:02.758009+00:00",
+  "generated_at": "2026-11-23T21:18:57.242567+00:00",
   "teams": [
     {
       "team_name": "CV FURIA",
@@ -2845,21 +2845,21 @@
         },
         {
           "jornada": 8,
-          "date": "2026-11-28",
-          "time": "18:00",
-          "local_team": "CV ITACA",
-          "visitor_team": "CV ALTAMIRA CALÍOPE",
-          "venue": "Pab. Pol. Sara Moreno Y Vicente Lli (moncada)",
+          "date": "2026-11-29",
+          "time": "11:00",
+          "local_team": "VOLEY QUART",
+          "visitor_team": "CV TORRENT - B",
+          "venue": "Pab.mun. Quart Poblet",
           "score": "",
           "set_scores": ""
         },
         {
           "jornada": 8,
           "date": "2026-11-29",
-          "time": "11:00",
-          "local_team": "VOLEY QUART",
-          "visitor_team": "CV TORRENT - B",
-          "venue": "Pab.mun. Quart Poblet",
+          "time": "20:00",
+          "local_team": "CV ITACA",
+          "visitor_team": "CV ALTAMIRA CALÍOPE",
+          "venue": "Pab. Pol. Sara Moreno Y Vicente Lli (moncada)",
           "score": "",
           "set_scores": ""
         },
