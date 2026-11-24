@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T21:18:57.242567+00:00",
+  "generated_at": "2026-11-24T20:08:36.103632+00:00",
   "teams": [
     {
       "team_name": "CV FURIA",
@@ -517,16 +517,6 @@
           "set_scores": ""
         },
         {
-          "jornada": 6,
-          "date": "2026-12-06",
-          "time": "11:00",
-          "is_home": true,
-          "opponent": "CV GANDÍA",
-          "venue": "Pab. Parque Central (valencia)",
-          "score": "",
-          "set_scores": ""
-        },
-        {
           "jornada": 11,
           "date": "2026-12-12",
           "time": "13:00",
@@ -543,6 +533,16 @@
           "is_home": true,
           "opponent": "CV CULLERA",
           "venue": "Pab. Parque Central (valencia)",
+          "score": "",
+          "set_scores": ""
+        },
+        {
+          "jornada": 13,
+          "date": "2027-01-10",
+          "time": "12:00",
+          "is_home": false,
+          "opponent": "NOU ALGEMESÍ VISCOCONFORT",
+          "venue": "Pav. 9 Octubre (algemesí)",
           "score": "",
           "set_scores": ""
         }
@@ -1221,16 +1221,6 @@
           "set_scores": ""
         },
         {
-          "jornada": 6,
-          "date": "2026-12-06",
-          "time": "11:00",
-          "local_team": "CV FURIA",
-          "visitor_team": "CV GANDÍA",
-          "venue": "Pab. Parque Central (valencia)",
-          "score": "",
-          "set_scores": ""
-        },
-        {
           "jornada": 10,
           "date": "2026-12-06",
           "time": "11:00",
@@ -1467,6 +1457,16 @@
           "local_team": "VAO ONTINYENT BLANC",
           "visitor_team": "VAO ONTINYENT NEGRO",
           "venue": "Pab.mun. Ontinyent",
+          "score": "",
+          "set_scores": ""
+        },
+        {
+          "jornada": 6,
+          "date": "2027-01-16",
+          "time": "16:00",
+          "local_team": "CV FURIA",
+          "visitor_team": "CV GANDÍA",
+          "venue": "Pab. Parque Central (valencia)",
           "score": "",
           "set_scores": ""
         },
